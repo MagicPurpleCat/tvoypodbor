@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+  <!-- Обложка Mini App для @BotFather → /newapp (640×360). -->
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#2B2F3A" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="fadeL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#07080B"/>
+      <stop offset="0.55" stop-color="#07080B" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#07080B" stop-opacity="0.2"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#00FF9D" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#00FF9D" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00FF9D"/>
+      <stop offset="1" stop-color="#00D46B"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1E2028"/>
+      <stop offset="1" stop-color="#1A1C23"/>
+    </linearGradient>
+    <linearGradient id="sec" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4A55E2"/>
+      <stop offset="1" stop-color="#636CFF"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="640" height="360" fill="#07080B"/>
+  <rect width="640" height="360" fill="url(#grid)" opacity="0.8"/>
+  <rect width="640" height="360" fill="url(#fadeL)"/>
+  <circle cx="500" cy="190" r="200" fill="url(#glow)"/>
+
+  <!-- левая колонка: бренд и оффер -->
+  <g data-logo3d transform="translate(9 33) scale(0.115)"/>
+  <text x="126" y="98" font-family="Segoe UI" font-weight="700" font-size="30" fill="#FFFFFF" letter-spacing="-0.5">ТвойПодбор</text>
+
+  <text font-family="Segoe UI" font-weight="700" font-size="25" fill="#FFFFFF" letter-spacing="-0.3">
+    <tspan x="40" y="168">Вакансии, резюме</tspan>
+    <tspan x="40" y="200">и готовый отклик —</tspan>
+    <tspan x="40" y="232">прямо в Telegram</tspan>
+  </text>
+
+  <rect x="40" y="264" width="226" height="36" rx="18" fill="#1A1C23" stroke="#2B2F3A"/>
+  <circle cx="60" cy="282" r="5" fill="#00FF9D"/>
+  <text x="74" y="287" font-family="Segoe UI" font-size="14" fill="#A0A0A0">5 запросов в день бесплатно</text>
+
+  <!-- правая колонка: карточки интерфейса -->
+  <g transform="translate(372 46)">
+    <!-- задняя карточка -->
+    <rect x="24" y="0" width="220" height="120" rx="14" fill="url(#card)" stroke="#2B2F3A" opacity="0.55"/>
+    <!-- основная карточка -->
+    <rect x="0" y="24" width="236" height="240" rx="16" fill="url(#card)" stroke="#2B2F3A"/>
+    <text x="18" y="58" font-family="Segoe UI" font-weight="700" font-size="16" fill="#FFFFFF">Node.js-разработчик</text>
+    <text x="18" y="79" font-family="Segoe UI" font-size="12.5" fill="#A0A0A0">Финтех · Москва</text>
+    <text x="18" y="114" font-family="Consolas" font-weight="700" font-size="19" fill="#00FF9D">от 280 000 ₽</text>
+
+    <rect x="18" y="130" width="72" height="22" rx="6" fill="#4A55E2" fill-opacity="0.18"/>
+    <text x="54" y="145" text-anchor="middle" font-family="Segoe UI" font-size="11.5" fill="#8F96FF">Удалёнка</text>
+    <rect x="96" y="130" width="58" height="22" rx="6" fill="#2B2F3A" fill-opacity="0.8"/>
+    <text x="125" y="145" text-anchor="middle" font-family="Segoe UI" font-size="11.5" fill="#A0A0A0">3–6 лет</text>
+
+    <!-- прогресс лимита -->
+    <text x="18" y="182" font-family="Segoe UI" font-size="11.5" fill="#A0A0A0">Бесплатно сегодня: 4 из 5</text>
+    <rect x="18" y="190" width="200" height="5" rx="2.5" fill="#2B2F3A"/>
+    <rect x="18" y="190" width="40" height="5" rx="2.5" fill="url(#sec)"/>
+
+    <!-- CTA -->
+    <rect x="18" y="212" width="200" height="38" rx="10" fill="url(#g)"/>
+    <text x="118" y="236" text-anchor="middle" font-family="Segoe UI" font-weight="700" font-size="14" fill="#07080B">Сгенерировать отклик</text>
+  </g>
+</svg>

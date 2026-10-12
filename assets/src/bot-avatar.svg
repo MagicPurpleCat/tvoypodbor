@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640">
+  <!-- Аватар бота. Telegram обрезает в круг — всё значимое внутри радиуса 300. -->
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#2B2F3A" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="fade" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0.35" stop-color="#07080B" stop-opacity="0"/>
+      <stop offset="1" stop-color="#07080B"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#00FF9D" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#00FF9D" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00FF9D"/>
+      <stop offset="1" stop-color="#00D46B"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4A55E2"/>
+      <stop offset="1" stop-color="#636CFF"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="640" height="640" fill="#07080B"/>
+  <rect width="640" height="640" fill="url(#grid)" opacity="0.7"/>
+  <rect width="640" height="640" fill="url(#fade)"/>
+  <circle cx="320" cy="320" r="260" fill="url(#glow)"/>
+
+  <!-- «приборные» кольца -->
+  <circle cx="320" cy="320" r="236" fill="none" stroke="#2B2F3A" stroke-width="2"/>
+  <g stroke="#2B2F3A" stroke-width="3">
+    <path d="M320 64v18M576 320h-18M320 576v-18M64 320h18"/>
+  </g>
+
+  <!-- монограмма -->
+  <!-- 3D-логотип -->
+  <g data-logo3d transform="translate(3 -4) scale(0.62)"/>
+</svg>

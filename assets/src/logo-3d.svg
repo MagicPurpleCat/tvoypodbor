@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<!-- 3D-логотип «ТП». Тело между BODY-маркерами вставляется в другие макеты скриптом render-assets.mjs. -->
+<!--BODY-->
+<defs>
+  <!-- плитка -->
+  <linearGradient id="l3-face" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#3DFFB8"/>
+    <stop offset="0.45" stop-color="#00EE85"/>
+    <stop offset="1" stop-color="#00BF62"/>
+  </linearGradient>
+  <linearGradient id="l3-side" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#005E31"/>
+    <stop offset="0.12" stop-color="#009C52"/>
+    <stop offset="0.5" stop-color="#00B862"/>
+    <stop offset="0.88" stop-color="#008A48"/>
+    <stop offset="1" stop-color="#004F29"/>
+  </linearGradient>
+  <linearGradient id="l3-gloss" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.42"/>
+    <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="l3-rim" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#E6FFF4" stop-opacity="0.95"/>
+    <stop offset="0.4" stop-color="#E6FFF4" stop-opacity="0.15"/>
+    <stop offset="1" stop-color="#003B1F" stop-opacity="0.6"/>
+  </linearGradient>
+  <clipPath id="l3-faceclip"><rect x="232" y="196" width="560" height="560" rx="132"/></clipPath>
+
+  <!-- буквы -->
+  <linearGradient id="l3-glyph" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="0" y2="76">
+    <stop offset="0" stop-color="#2A2E39"/>
+    <stop offset="0.35" stop-color="#14161C"/>
+    <stop offset="1" stop-color="#07080B"/>
+  </linearGradient>
+  <linearGradient id="l3-glyphrim" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#A9AEFF" stop-opacity="0.95"/>
+    <stop offset="1" stop-color="#636CFF" stop-opacity="0.5"/>
+  </linearGradient>
+
+  <!-- кольцо -->
+  <linearGradient id="l3-ring" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#4A55E2"/>
+    <stop offset="0.5" stop-color="#8F96FF"/>
+    <stop offset="1" stop-color="#4A55E2"/>
+  </linearGradient>
+  <radialGradient id="l3-node" cx="0.35" cy="0.3" r="0.75">
+    <stop offset="0" stop-color="#FFFFFF"/>
+    <stop offset="0.35" stop-color="#A9AEFF"/>
+    <stop offset="1" stop-color="#3B44C4"/>
+  </radialGradient>
+  <clipPath id="l3-front"><rect x="0" y="600" width="1024" height="424"/></clipPath>
+
+  <!-- фаска и блик на плитке: рельеф из размытой альфы + точечный свет сверху слева -->
+  <filter id="l3-bevel" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="16" result="bump"/>
+    <feSpecularLighting in="bump" surfaceScale="9" specularConstant="0.85" specularExponent="22" lighting-color="#F2FFF9" result="spec">
+      <fePointLight x="260" y="40" z="420"/>
+    </feSpecularLighting>
+    <feComposite in="spec" in2="SourceAlpha" operator="in" result="specIn"/>
+    <feComposite in="SourceGraphic" in2="specIn" operator="arithmetic" k1="0" k2="1" k3="0.5" k4="0"/>
+  </filter>
+  <!-- то же для букв, координаты в единицах буквенной сетки 0..100 -->
+  <filter id="l3-gbevel" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="1.4" result="bump"/>
+    <feSpecularLighting in="bump" surfaceScale="3" specularConstant="1" specularExponent="18" lighting-color="#C9CCFF" result="spec">
+      <fePointLight x="10" y="-30" z="60"/>
+    </feSpecularLighting>
+    <feComposite in="spec" in2="SourceAlpha" operator="in" result="specIn"/>
+    <feComposite in="SourceGraphic" in2="specIn" operator="arithmetic" k1="0" k2="1" k3="0.55" k4="0"/>
+  </filter>
+  <filter id="l3-gshadow" x="-20%" y="-20%" width="140%" height="160%">
+    <feGaussianBlur stdDeviation="1.6"/>
+  </filter>
+  <filter id="l3-blur60" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="60"/></filter>
+  <filter id="l3-blur18" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="18"/></filter>
+  <filter id="l3-blur6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+
+<!-- свечение и тень на «полу» -->
+<ellipse cx="512" cy="840" rx="360" ry="110" fill="#00FF9D" opacity="0.22" filter="url(#l3-blur60)"/>
+<ellipse cx="512" cy="872" rx="280" ry="30" fill="#000000" opacity="0.7" filter="url(#l3-blur18)"/>
+
+<!-- задняя половина кольца -->
+<g transform="rotate(-14 512 600)">
+  <ellipse cx="512" cy="600" rx="430" ry="122" fill="none" stroke="url(#l3-ring)" stroke-width="9" opacity="0.45"/>
+</g>
+
+<!-- торец (выдавливание вниз на 60px) -->
+<rect x="232" y="196" width="560" height="620" rx="132" fill="url(#l3-side)"/>
+<rect x="232" y="196" width="560" height="620" rx="132" fill="none" stroke="#002A15" stroke-opacity="0.6" stroke-width="2"/>
+
+<!-- лицевая грань с фаской -->
+<g filter="url(#l3-bevel)">
+  <rect x="232" y="196" width="560" height="560" rx="132" fill="url(#l3-face)"/>
+</g>
+<g clip-path="url(#l3-faceclip)">
+  <!-- глянец и диагональный отблеск -->
+  <ellipse cx="430" cy="150" rx="470" ry="290" fill="url(#l3-gloss)"/>
+  <rect x="600" y="-100" width="46" height="1200" fill="#FFFFFF" opacity="0.10" transform="rotate(32 512 476)"/>
+  <rect x="664" y="-100" width="14" height="1200" fill="#FFFFFF" opacity="0.08" transform="rotate(32 512 476)"/>
+</g>
+<rect x="233.5" y="197.5" width="557" height="557" rx="130.5" fill="none" stroke="url(#l3-rim)" stroke-width="3"/>
+
+<!-- буквы: тень на плитке, торец, лицевая часть с фаской, фиолетовый кант сверху -->
+<g transform="translate(232 196) scale(5.6)">
+  <g fill="#00391D" opacity="0.75" filter="url(#l3-gshadow)" transform="translate(1.2 4.2)">
+    <rect x="13" y="24" width="33" height="11" rx="2"/>
+    <rect x="24" y="24" width="11" height="52" rx="2"/>
+    <path d="M52 26a2 2 0 0 1 2-2h31a2 2 0 0 1 2 2v48a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V35H63v39a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2Z"/>
+  </g>
+  <g fill="#020203">
+    <g transform="translate(0 2.6)">
+      <rect x="13" y="24" width="33" height="11" rx="2"/>
+      <rect x="24" y="24" width="11" height="52" rx="2"/>
+      <path d="M52 26a2 2 0 0 1 2-2h31a2 2 0 0 1 2 2v48a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V35H63v39a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2Z"/>
+    </g>
+    <g transform="translate(0 1.3)">
+      <rect x="13" y="24" width="33" height="11" rx="2"/>
+      <rect x="24" y="24" width="11" height="52" rx="2"/>
+      <path d="M52 26a2 2 0 0 1 2-2h31a2 2 0 0 1 2 2v48a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V35H63v39a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2Z"/>
+    </g>
+  </g>
+  <g fill="url(#l3-glyph)" filter="url(#l3-gbevel)">
+    <rect x="13" y="24" width="33" height="11" rx="2"/>
+    <rect x="24" y="24" width="11" height="52" rx="2"/>
+    <path d="M52 26a2 2 0 0 1 2-2h31a2 2 0 0 1 2 2v48a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V35H63v39a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2Z"/>
+  </g>
+  <g fill="none" stroke="url(#l3-glyphrim)" stroke-width="0.5" stroke-linecap="round">
+    <path d="M14.6 24.3H44.4"/>
+    <path d="M53.6 24.3H85.4"/>
+  </g>
+  <!-- тонкая неоновая прорезь в перекладине Т — «индикатор» -->
+  <rect x="17" y="28.6" width="10" height="1.4" rx="0.7" fill="#00FF9D" opacity="0.9"/>
+</g>
+
+<!-- передняя половина кольца и узел на нём -->
+<g transform="rotate(-14 512 600)">
+  <ellipse cx="512" cy="600" rx="430" ry="122" fill="none" stroke="url(#l3-ring)" stroke-width="12" clip-path="url(#l3-front)"/>
+  <ellipse cx="512" cy="600" rx="430" ry="122" fill="none" stroke="#C9CCFF" stroke-width="2.5" stroke-opacity="0.7" clip-path="url(#l3-front)" transform="translate(0 -4)"/>
+</g>
+<circle cx="746" cy="649" r="30" fill="#636CFF" opacity="0.55" filter="url(#l3-blur18)"/>
+<circle cx="746" cy="649" r="19" fill="url(#l3-node)"/>
+
+<!-- искра на углу -->
+<g transform="translate(318 262)">
+  <circle r="22" fill="#FFFFFF" opacity="0.5" filter="url(#l3-blur6)"/>
+  <path d="M0-30C2-8 8-2 30 0 8 2 2 8 0 30-2 8-8 2-30 0-8-2-2-8 0-30Z" fill="#FFFFFF"/>
+</g>
+
+<!-- парящие кубики -->
+<g transform="translate(150 300)">
+  <path d="M0-26 26-13 0 0-26-13Z" fill="#8F96FF"/>
+  <path d="M-26-13 0 0V30L-26 17Z" fill="#4A55E2"/>
+  <path d="M26-13 0 0V30L26 17Z" fill="#343DB0"/>
+</g>
+<g transform="translate(884 248)">
+  <path d="M0-18 18-9 0 0-18-9Z" fill="#5CFFC0"/>
+  <path d="M-18-9 0 0V20L-18 11Z" fill="#00C463"/>
+  <path d="M18-9 0 0V20L18 11Z" fill="#008A48"/>
+</g>
+<g transform="translate(860 812)">
+  <path d="M0-13 13-6.5 0 0-13-6.5Z" fill="#8F96FF"/>
+  <path d="M-13-6.5 0 0V15L-13 8.5Z" fill="#4A55E2"/>
+  <path d="M13-6.5 0 0V15L13 8.5Z" fill="#343DB0"/>
+</g>
+<!--/BODY-->
+</svg>

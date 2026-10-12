@@ -1,0 +1,10 @@
+# Caddy сам получает и продлевает сертификаты Let's Encrypt.
+{$API_DOMAIN} {
+	encode gzip
+	reverse_proxy api:3000
+}
+
+{$APP_DOMAIN} {
+	encode gzip
+	reverse_proxy webapp:80
+}

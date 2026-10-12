@@ -1,0 +1,12 @@
+{
+  "name": "tvoypodbor-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "assets": "node render-assets.mjs",
+    "contrast": "node contrast.mjs"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}

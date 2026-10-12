@@ -1,0 +1,69 @@
+name: CI / Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  REGISTRY: ghcr.io
+  API_IMAGE: ghcr.io/${{ github.repository }}/api
+  WEBAPP_IMAGE: ghcr.io/${{ github.repository }}/webapp
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Backend — typecheck + tests
+        working-directory: backend
+        run: npm ci && npm run typecheck && npm test
+      - name: Webapp — build
+        working-directory: webapp
+        run: npm ci && npm run build
+
+  build-and-deploy:
+    needs: check
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions: { contents: read, packages: write }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: backend/Dockerfile
+          push: true
+          tags: ${{ env.API_IMAGE }}:latest,${{ env.API_IMAGE }}:${{ github.sha }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: webapp/Dockerfile
+          push: true
+          build-args: VITE_API_URL=${{ vars.PUBLIC_URL }}
+          tags: ${{ env.WEBAPP_IMAGE }}:latest,${{ env.WEBAPP_IMAGE }}:${{ github.sha }}
+
+      # На сервере лежат docker-compose.yml, Caddyfile и .env в $DEPLOY_PATH
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            set -e
+            cd ${{ secrets.DEPLOY_PATH }}
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            export API_IMAGE=${{ env.API_IMAGE }}:${{ github.sha }}
+            export WEBAPP_IMAGE=${{ env.WEBAPP_IMAGE }}:${{ github.sha }}
+            docker compose pull api webapp
+            docker compose run --rm migrate
+            docker compose up -d --no-build
+            docker image prune -f
